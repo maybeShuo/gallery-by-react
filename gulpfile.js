@@ -109,7 +109,7 @@ gulp.task("watch-js", () => {
 });
 
 gulp.task("watch-less", () => {
-    gulp.watch(`${SRC_PATH}/app/res/index.less`, [ "build-less" ]);
+    gulp.watch(`${SRC_PATH}/res/index.less`, [ "build-less" ]);
 });
 
 gulp.task("watch-html", () => {
