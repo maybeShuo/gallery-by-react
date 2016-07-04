@@ -1,0 +1,48 @@
+{
+  "name": "front-end-engineering-self",
+  "version": "1.0.0",
+  "description": "An example of simple websites",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "build": "gulp",
+    "dev": "gulp dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maybeShuo/gallery-by-react.git"
+  },
+  "keywords": [
+    "node",
+    "gulp"
+  ],
+  "author": "Chen Shuo <546537825@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maybeShuo/gallery-by-react/issues"
+  },
+  "homepage": "https://github.com/maybeShuo/gallery-by-react#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-hash": "^3.1.0",
+    "gulp-less": "^3.1.0",
+    "gulp-rev-replace": "^0.4.3",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-uglify": "^1.5.3",
+    "jquery": "^1.12.3",
+    "jquery.transit": "^0.9.12",
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0",
+    "run-sequence": "^1.2.0"
+  }
+}
