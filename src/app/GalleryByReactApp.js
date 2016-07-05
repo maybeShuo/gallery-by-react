@@ -14,12 +14,24 @@ function getRangeRandom(low, high) {
     return Math.ceil(Math.random() * (high - low) + low);
 }
 
+function getDegRandom() {
+    return ((Math.random() > 0.5 ? '' : '-')) + Math.ceil(Math.random() * 30);
+}
+
 let ImgFigure = React.createClass({displayName: "ImgFigure",
     render: function() {
+
         let styleObj = {};
         if(this.props.arrange.pos){
             styleObj = this.props.arrange.pos;
         }
+
+        if(this.props.arrange.rotate){
+            (['-moz-', '-ms-', '-webkit-']).forEach(function(value) {
+                styleObj[value + 'transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
+            }.bind(this));
+        }
+
         return (
             React.createElement("figure", {className: "img-figure", style: styleObj}, 
                 React.createElement("img", {src: this.props.data.imageURL, 
@@ -66,6 +78,9 @@ const GalleryByReactApp = React.createClass({displayName: "GalleryByReactApp",
             //居中centerIndex的图片
             imgsArrangeCenterArr[0].pos = centerPos;
 
+            //居中的图片不需要旋转
+            imgsArrangeCenterArr[0].rotate = 0;
+
             //取出要布局上侧的图片状态信息
             topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
             imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
@@ -76,6 +91,7 @@ const GalleryByReactApp = React.createClass({displayName: "GalleryByReactApp",
                     top: getRangeRandom(vPosRange.topY[0], vPosRange.topY[1]),
                     left: getRangeRandom(vPosRange.x[0], vPosRange.x[1])
                 };
+                item.rotate = getDegRandom();
                 return item;
             });
 
@@ -94,6 +110,7 @@ const GalleryByReactApp = React.createClass({displayName: "GalleryByReactApp",
                     top: getRangeRandom(hPosRange.y[0], hPosRange.y[1]),
                     left: getRangeRandom(hPosRangeX[0], hPosRangeX[1])
                 };
+                item.rotate = getDegRandom();
 
                 return item;
             });
@@ -118,7 +135,8 @@ const GalleryByReactApp = React.createClass({displayName: "GalleryByReactApp",
                     pos: {
                         left: '0',
                         top: '0'
-                    }
+                    },
+                    rotate: 0 //旋转角度
                 }
             ]
         };
@@ -134,7 +152,6 @@ const GalleryByReactApp = React.createClass({displayName: "GalleryByReactApp",
         let halfStageH = Math.ceil(stageH / 2);
 
         let imgFigureDom = ReactDOM.findDOMNode(this.refs.ImgFigure0);
-        console.log(imgFigureDom);
         let imgW = imgFigureDom.scrollWidth;
         let imgH = imgFigureDom.scrollHeight;
         let halfImgW = Math.ceil(imgW / 2);
@@ -170,7 +187,8 @@ const GalleryByReactApp = React.createClass({displayName: "GalleryByReactApp",
                     pos: {
                         left: 0,
                         top: 0
-                    }
+                    },
+                    rotate: 0
                 }
             }
             imgFigures.push(React.createElement(ImgFigure, {data: item, ref: "ImgFigure" + index, arrange: this.state.imgsArrangeArr[index]}));
